@@ -176,7 +176,7 @@ public class BaseDeDatos {
            }
         return fila;
     }
-    public void agregarBaseDeDatosCompleta(ArrayList <Object> tabla){
+    public void agregarBaseDeDatosCompleta(ArrayList <Platillo> tabla){
         for (int i = 0; i < tabla.size(); i++) {
             agregar(tabla.get(i));
         }
@@ -285,5 +285,17 @@ public class BaseDeDatos {
         }
        return dato;
     }
-    
+    public void creearTicket(int idOrden, String ticket){
+        FileWriter archivo=null;
+        try {
+            archivo = new FileWriter("Ticket de la orden"+idOrden+".txt");
+            FileWriter fw = new FileWriter("Ticket de la orden"+idOrden+".txt");//Crea un archivo con nombre
+            BufferedWriter bw= new BufferedWriter(fw);//Inicializa el buffer
+            PrintWriter salida = new PrintWriter(bw);//Inicializa la comunicacion con el buffer
+            salida.print(ticket);//imprimir en archivo
+            salida.close();//cierra el archivo
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(BaseDeDatos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
 }
